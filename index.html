@@ -1,0 +1,135 @@
+<!--
+AI/ML Portfolio — index.html
+Ready to drop into a GitHub Pages repo named: yourusername.github.io
+
+How to use:
+1. In your GitHub account create a repo named exactly: yourusername.github.io
+2. Add this file as `index.html` at the repo root (you can use the GitHub web editor or push via git).
+3. Commit and visit: https://yourusername.github.io
+
+Replace the placeholder content below (NAME, BIO, PROJECTS, LINKS). For projects replace the <article class="project"> blocks with your own title, description, tech, and links.
+
+This is intentionally minimal, responsive, and plain CSS so you can edit easily.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — AI / ML Portfolio</title>
+  <meta name="description" content="Portfolio — AI/ML, NLP, MLOps projects by Your Name" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <style>
+    :root{--accent:#0066ff;--bg:#ffffff;--muted:#6b7280;--max:900px}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Arial;line-height:1.5;color:#0f172a;margin:0;background:var(--bg);padding:32px}
+    .wrap{max-width:var(--max);margin:0 auto}
+    header{display:flex;gap:20px;align-items:center}
+    .avatar{width:96px;height:96px;border-radius:12px;background:#eef2ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    h1{margin:0;font-size:28px}
+    p.lead{margin:8px 0;color:var(--muted)}
+    .cta{margin-top:12px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid transparent}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
+
+    section{margin-top:28px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr} .avatar{width:72px;height:72px}}
+
+    .card{padding:16px;border-radius:12px;background:#fbfdff;border:1px solid #eef3ff}
+    .project{margin-bottom:12px;padding:12px;border-radius:10px;background:white;border:1px solid #f1f5f9}
+    .meta{font-size:13px;color:var(--muted)}
+    ul.skills{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+    ul.skills li{padding:6px 8px;border-radius:8px;background:#f8fafc;border:1px solid #eef2ff;font-size:13px}
+    footer{margin-top:40px;color:var(--muted);font-size:13px}
+    a.small{font-size:13px;color:var(--accent);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="avatar">YN</div>
+      <div>
+        <h1>Your Name — AI / ML Engineer</h1>
+        <p class="lead">BSc Computer Science · AI, ML, DL, NLP, MLOps · I build production-ready models and demos. Based in [City].</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#projects">My Projects</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section id="projects">
+          <h2>Selected Projects</h2>
+
+          <!-- Copy / replace each project block -->
+          <article class="project">
+            <h3>1) ChatGPT Resume Analyzer</h3>
+            <p class="meta">NLP · LLM · LangChain · Streamlit</p>
+            <p>Short: An LLM-powered resume scoring tool that extracts skills and recommends improvements. Live demo + repo links below.</p>
+            <p><a class="small" href="#">Demo</a> · <a class="small" href="#">GitHub</a></p>
+          </article>
+
+          <article class="project">
+            <h3>2) Vision-Language Captioning</h3>
+            <p class="meta">PyTorch · Hugging Face · Transformers</p>
+            <p>Short: Multi-modal image captioning using a transformer encoder-decoder. Includes training scripts and inference API.</p>
+            <p><a class="small" href="#">Demo</a> · <a class="small" href="#">GitHub</a></p>
+          </article>
+
+          <article class="project">
+            <h3>3) End-to-End MLOps Pipeline</h3>
+            <p class="meta">MLflow · Docker · FastAPI · CI/CD</p>
+            <p>Short: Automated training, model versioning, serving with a reproducible Docker + CI pipeline.</p>
+            <p><a class="small" href="#">GitHub</a></p>
+          </article>
+
+        </section>
+
+        <section id="about">
+          <h2>About</h2>
+          <p>I am a BSc Computer Science graduate focused on building ML systems that move to production. My interests: LLMs, NLP, computer vision, and MLOps.</p>
+        </section>
+
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>Email: <a class="small" href="mailto:youremail@example.com">youremail@example.com</a></p>
+          <p>LinkedIn: <a class="small" href="#">linkedin.com/in/yourname</a></p>
+          <p>GitHub: <a class="small" href="#">github.com/yourusername</a></p>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card">
+          <h3>Skills</h3>
+          <ul class="skills">
+            <li>Python</li>
+            <li>PyTorch</li>
+            <li>TensorFlow</li>
+            <li>NLP</li>
+            <li>LLMs</li>
+            <li>MLOps</li>
+            <li>Docker</li>
+            <li>FastAPI</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>Links</h3>
+          <p><a class="small" href="#">Hugging Face Spaces</a><br>
+          <a class="small" href="#">Kaggle</a><br>
+          <a class="small" href="#">Resume (PDF)</a></p>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <p>Made with minimal HTML — edit this file and push to GitHub to go live. Tip: add live demo links (Hugging Face Spaces / Streamlit) to impress recruiters.</p>
+    </footer>
+  </div>
+</body>
+</html>
