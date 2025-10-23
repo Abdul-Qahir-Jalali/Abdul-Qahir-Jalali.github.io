@@ -1,135 +1,400 @@
-<!--
-AI/ML Portfolio — index.html
-Ready to drop into a GitHub Pages repo named: yourusername.github.io
-
-How to use:
-1. In your GitHub account create a repo named exactly: yourusername.github.io
-2. Add this file as `index.html` at the repo root (you can use the GitHub web editor or push via git).
-3. Commit and visit: https://yourusername.github.io
-
-Replace the placeholder content below (NAME, BIO, PROJECTS, LINKS). For projects replace the <article class="project"> blocks with your own title, description, tech, and links.
-
-This is intentionally minimal, responsive, and plain CSS so you can edit easily.
--->
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Your Name — AI / ML Portfolio</title>
-  <meta name="description" content="Portfolio — AI/ML, NLP, MLOps projects by Your Name" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <title>Abdul Qahir Jalali — AI/ML Portfolio</title>
+  <meta name="description" content="Portfolio — Abdul Qahir Jalali | AI, ML, DL, NLP, Generative AI, MLOps" />
+
   <style>
-    :root{--accent:#0066ff;--bg:#ffffff;--muted:#6b7280;--max:900px}
+    /* -------------------------
+       Futuristic neon theme CSS
+       Single-file, no libs
+       -------------------------*/
+    :root{
+      --bg:#05060a;
+      --card:#071022;
+      --muted:#9aa6c0;
+      --glass: rgba(255,255,255,0.04);
+      --accent1: #6ee7b7; /* mint */
+      --accent2: #7c5cff; /* violet */
+      --accent3: #00d4ff; /* cyan */
+      --glass-2: rgba(255,255,255,0.03);
+      --max:1100px;
+      color-scheme: dark;
+    }
+    /* Light mode vars override */
+    .light {
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted:#475569;
+      --glass: rgba(2,6,23,0.03);
+      --glass-2: rgba(2,6,23,0.025);
+      --accent1:#0ea5a5;
+      --accent2:#6d28d9;
+      --accent3:#0891b2;
+      color-scheme: light;
+    }
+
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Segoe UI,Arial;line-height:1.5;color:#0f172a;margin:0;background:var(--bg);padding:32px}
-    .wrap{max-width:var(--max);margin:0 auto}
-    header{display:flex;gap:20px;align-items:center}
-    .avatar{width:96px;height:96px;border-radius:12px;background:#eef2ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
-    h1{margin:0;font-size:28px}
-    p.lead{margin:8px 0;color:var(--muted)}
-    .cta{margin-top:12px}
-    .btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid transparent}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.07), transparent 8%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(0,212,255,0.04), transparent 6%),
+                  var(--bg);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:36px 20px;
+      display:flex;
+      justify-content:center;
+    }
 
-    section{margin-top:28px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px}
-    @media (max-width:880px){.grid{grid-template-columns:1fr} .avatar{width:72px;height:72px}}
+    /* animated tech grid background */
+    .bg-canvas{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100px 100px, 100px 100px;
+      mix-blend-mode: overlay;
+      opacity:0.35;
+      animation: drift 24s linear infinite;
+      filter: blur(8px) saturate(1.1);
+    }
+    @keyframes drift { 0% {transform:translateY(0)} 50% {transform:translateY(-30px)} 100% {transform:translateY(0)} }
 
-    .card{padding:16px;border-radius:12px;background:#fbfdff;border:1px solid #eef3ff}
-    .project{margin-bottom:12px;padding:12px;border-radius:10px;background:white;border:1px solid #f1f5f9}
-    .meta{font-size:13px;color:var(--muted)}
-    ul.skills{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:8px}
-    ul.skills li{padding:6px 8px;border-radius:8px;background:#f8fafc;border:1px solid #eef2ff;font-size:13px}
-    footer{margin-top:40px;color:var(--muted);font-size:13px}
-    a.small{font-size:13px;color:var(--accent);text-decoration:none}
+    .container{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:var(--max);
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:28px;
+      align-items:start;
+    }
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr; padding-bottom:40px}
+    }
+
+    /* Card base */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:18px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Hero */
+    header.hero{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      padding:22px;
+      border-radius:14px;
+      margin-bottom:6px;
+      overflow:hidden;
+    }
+    .portrait{
+      width:112px;height:112px;border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:28px;color:var(--card);
+      background: linear-gradient(135deg,var(--accent1),var(--accent2));
+      box-shadow: 0 10px 30px rgba(124,92,255,0.12), 0 3px 12px rgba(0,212,255,0.06);
+      flex:0 0 112px;
+    }
+    .hero h1{margin:0;font-size:22px;letter-spacing:0.4px}
+    .hero p.lead{margin:8px 0;color:var(--muted);font-size:14px;max-width:700px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .badge{
+      font-size:12px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04); color:var(--accent1); font-weight:600;
+      box-shadow: 0 6px 18px rgba(12,12,20,0.25) inset;
+    }
+
+    /* Buttons */
+    .controls{display:flex;gap:10px;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
+      text-decoration:none;font-weight:600;font-size:13px;border:1px solid rgba(255,255,255,0.06);
+      color:inherit;background:transparent;cursor:pointer;
+    }
+    .btn-primary{
+      background: linear-gradient(90deg,var(--accent1),var(--accent3));
+      color:#031018;border:none;box-shadow: 0 8px 24px rgba(0,212,255,0.08);
+    }
+    .btn-ghost{border:1px solid rgba(255,255,255,0.04); color:var(--accent2)}
+
+    /* left column main */
+    main{padding:4px 0}
+    h2.section-title{font-size:16px;margin:10px 0 12px;color:var(--accent2)}
+    .projects-grid{display:grid;gap:12px}
+    .project{
+      display:block;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid rgba(255,255,255,0.035);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .project:hover{transform: translateY(-6px); box-shadow: 0 20px 60px rgba(2,6,23,0.6)}
+    .project h3{margin:0 0 6px;font-size:15px}
+    .project .meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+    .project p{margin:0 0 10px;color: #cfe9ff;font-size:14px}
+    .project .links{display:flex;gap:8px;flex-wrap:wrap}
+
+    /* aside right column */
+    aside.sidebar{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+    .skill-list{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{padding:6px 10px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); font-weight:600; font-size:13px; color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* timeline / education */
+    .timeline{border-left:2px dashed rgba(255,255,255,0.03);padding-left:14px;margin-top:8px}
+    .tl-item{margin-bottom:12px}
+    .tl-item h4{margin:0;font-size:14px}
+    .tl-item p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    /* footer */
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* small screens */
+    @media (max-width:560px){
+      .portrait{width:86px;height:86px;font-size:22px}
+      .hero h1{font-size:20px}
+      .btn{padding:8px 10px;font-size:12px}
+    }
+
+    /* neon accent shimmer */
+    .neon {
+      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 6px 20px rgba(124,92,255,0.06);
+    }
+
+    /* tiny utilities */
+    .muted{color:var(--muted)}
+    a.link{color:var(--accent3);text-decoration:none;font-weight:700}
+    .pill{display:inline-block;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg,var(--accent2),var(--accent3));color:#04111a;font-weight:700;font-size:12px}
+    .contact-list{display:flex;flex-direction:column;gap:6px}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="avatar">YN</div>
-      <div>
-        <h1>Your Name — AI / ML Engineer</h1>
-        <p class="lead">BSc Computer Science · AI, ML, DL, NLP, MLOps · I build production-ready models and demos. Based in [City].</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#projects">My Projects</a>
-          <a class="btn btn-ghost" href="#contact">Contact</a>
+  <div class="bg-canvas" aria-hidden="true"></div>
+
+  <div class="container" role="main">
+
+    <!-- LEFT: main content -->
+    <div>
+      <header class="hero card">
+        <div class="portrait" aria-hidden="true">AQ</div>
+        <div>
+          <h1>Abdul Qahir Jalali</h1>
+          <p class="lead">BSc Computer Science • AI / ML / DL / NLP / Generative AI • MLOps • Building research-driven production systems</p>
+
+          <div class="badges" aria-hidden="true">
+            <div class="badge">DeepFake Audio Detection (Urdu)</div>
+            <div class="badge">MLOps • MLflow • Docker</div>
+            <div class="badge">Intern @ ITSOLERA</div>
+          </div>
+
+          <div class="controls" style="margin-top:12px">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-ghost" href="#contact">Contact</a>
+            <button id="themeToggle" class="btn" title="Toggle light/dark">Toggle Theme</button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <div class="grid">
-      <main>
-        <section id="projects">
-          <h2>Selected Projects</h2>
+      <!-- Projects -->
+      <main class="card" aria-labelledby="projects-heading" role="region">
+        <h2 id="projects-heading" class="section-title">Selected Projects</h2>
+        <div class="projects-grid">
 
-          <!-- Copy / replace each project block -->
+          <!-- Project 1 -->
           <article class="project">
-            <h3>1) ChatGPT Resume Analyzer</h3>
-            <p class="meta">NLP · LLM · LangChain · Streamlit</p>
-            <p>Short: An LLM-powered resume scoring tool that extracts skills and recommends improvements. Live demo + repo links below.</p>
-            <p><a class="small" href="#">Demo</a> · <a class="small" href="#">GitHub</a></p>
+            <h3>DeepFake Audio Detection — Urdu (Final Year Thesis)</h3>
+            <div class="meta">Speech Forensics · wav2vec2-large-xlsr-53 · PyTorch · Flask · Model fine-tuning</div>
+            <p>
+              Built a deepfake audio detection system targeted to Urdu. Collected and balanced a real / cloned voice dataset,
+              fine-tuned wav2vec2-large-xlsr-53 for binary detection and deployed a lightweight Flask web app that accepts audio uploads and returns prediction + confidence.
+            </p>
+            <div class="links">
+              <a class="link" href="#projects">Read summary</a>
+              <!-- If you host demo/GitHub, replace # with actual links -->
+              <a class="link" href="https://github.com/Abdul-Qahir-Jalali" target="_blank" rel="noopener">GitHub</a>
+            </div>
           </article>
 
+          <!-- Project 2 -->
           <article class="project">
-            <h3>2) Vision-Language Captioning</h3>
-            <p class="meta">PyTorch · Hugging Face · Transformers</p>
-            <p>Short: Multi-modal image captioning using a transformer encoder-decoder. Includes training scripts and inference API.</p>
-            <p><a class="small" href="#">Demo</a> · <a class="small" href="#">GitHub</a></p>
+            <h3>Crop Recommendation System</h3>
+            <div class="meta">Random Forest · Flask · Agriculture · Feature engineering</div>
+            <p>
+              An ML-driven system that recommends suitable crops based on soil properties and environmental features.
+              Implemented Random Forest models and a Flask UI for users to input soil parameters and receive suggestions.
+            </p>
+            <div class="links">
+              <a class="link" href="https://github.com/Abdul-Qahir-Jalali/crop-recommendation-system" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="link" href="#projects">Live demo (if hosted)</a>
+            </div>
           </article>
 
+          <!-- Project 3 -->
           <article class="project">
-            <h3>3) End-to-End MLOps Pipeline</h3>
-            <p class="meta">MLflow · Docker · FastAPI · CI/CD</p>
-            <p>Short: Automated training, model versioning, serving with a reproducible Docker + CI pipeline.</p>
-            <p><a class="small" href="#">GitHub</a></p>
+            <h3>AI-Enhanced Detection of Fake & Bot Profiles (Intern Project)</h3>
+            <div class="meta">NLP · Behavioral features · ITSOLERA Pvt. Ltd. (Intern)</div>
+            <p>
+              Contributed to a project detecting fake and bot profiles on social media using a mix of NLP features and heuristics. Assisted in data preprocessing, model development, and evaluation.
+            </p>
+            <div class="links">
+              <a class="link" href="#contact">Contact for details</a>
+            </div>
           </article>
 
+        </div>
+
+        <!-- About / Summary -->
+        <section style="margin-top:18px">
+          <h2 class="section-title">About</h2>
+          <p style="margin:0;color:var(--muted);line-height:1.5">
+            Computer Science graduate (University of Azad Jammu & Kashmir) with a strong foundation in AI, Machine Learning,
+            Deep Learning, NLP, Generative AI and MLOps. I build reproducible pipelines and production-ready demos that translate research into real-world solutions.
+          </p>
         </section>
 
-        <section id="about">
-          <h2>About</h2>
-          <p>I am a BSc Computer Science graduate focused on building ML systems that move to production. My interests: LLMs, NLP, computer vision, and MLOps.</p>
+        <!-- Education -->
+        <section style="margin-top:16px">
+          <h2 class="section-title">Education</h2>
+          <div class="timeline">
+            <div class="tl-item">
+              <h4>BSc — Computer Science</h4>
+              <p class="small muted">University of Azad Jammu and Kashmir | 12/2021 – 12/2025 · Final GPA: 3.43/4.00</p>
+              <p class="small">Thesis: <strong>Deep Fake Audio Detection for Urdu Language</strong></p>
+            </div>
+            <div class="tl-item">
+              <h4>HSSC — READ Foundation School & College Harighel</h4>
+              <p class="small muted">2018 – 2020 · Field: Pre-Medical · 62.55%</p>
+            </div>
+            <div class="tl-item">
+              <h4>Matric — READ Foundation High School Kaffal Garh</h4>
+              <p class="small muted">2016 – 2018 · Science · 91% · <span style="color:var(--accent1);font-weight:700">Gold Medal</span></p>
+            </div>
+          </div>
         </section>
 
-        <section id="contact">
-          <h2>Contact</h2>
-          <p>Email: <a class="small" href="mailto:youremail@example.com">youremail@example.com</a></p>
-          <p>LinkedIn: <a class="small" href="#">linkedin.com/in/yourname</a></p>
-          <p>GitHub: <a class="small" href="#">github.com/yourusername</a></p>
+        <!-- Certifications -->
+        <section style="margin-top:16px">
+          <h2 class="section-title">Certifications</h2>
+          <div class="neon" style="display:flex;flex-direction:column;gap:8px">
+            <div class="small">Machine Learning Specialization — DeepLearning.AI (Coursera) · 23 Nov 2024</div>
+            <div class="small">AI For Everyone — DeepLearning.AI (Coursera) · 08 Jul 2025</div>
+            <div class="small">Effective Problem-Solving & Decision-Making — UC Irvine (Coursera) · 12 Sep 2025</div>
+            <div class="small">Master Problem Solving & Critical Thinking — LearnKarts (Coursera) · 13 Sep 2025</div>
+            <div class="small">Introduction to Certified Professional Biller — AAPC (Coursera) · 20 Jul 2025</div>
+          </div>
         </section>
+
       </main>
 
-      <aside>
-        <div class="card">
-          <h3>Skills</h3>
-          <ul class="skills">
-            <li>Python</li>
-            <li>PyTorch</li>
-            <li>TensorFlow</li>
-            <li>NLP</li>
-            <li>LLMs</li>
-            <li>MLOps</li>
-            <li>Docker</li>
-            <li>FastAPI</li>
-          </ul>
-        </div>
-
-        <div class="card" style="margin-top:16px">
-          <h3>Links</h3>
-          <p><a class="small" href="#">Hugging Face Spaces</a><br>
-          <a class="small" href="#">Kaggle</a><br>
-          <a class="small" href="#">Resume (PDF)</a></p>
-        </div>
-      </aside>
+      <!-- Footer note -->
+      <footer>
+        <div class="small muted">Tip: add live Hugging Face / Streamlit demos and screenshots to each project to impress recruiters.</div>
+      </footer>
     </div>
 
-    <footer>
-      <p>Made with minimal HTML — edit this file and push to GitHub to go live. Tip: add live demo links (Hugging Face Spaces / Streamlit) to impress recruiters.</p>
-    </footer>
+    <!-- RIGHT: sidebar -->
+    <aside class="sidebar">
+
+      <div class="card">
+        <h3 style="margin:0 0 8px">Contact</h3>
+        <div class="contact-list">
+          <div class="small"><strong>Email:</strong> <a class="link" href="mailto:abdulqahir421@gmail.com">abdulqahir421@gmail.com</a></div>
+          <div class="small"><strong>Phone:</strong> <a class="link" href="tel:+923408198770">+92 340 8198770</a></div>
+          <div class="small"><strong>LinkedIn:</strong> <a class="link" href="https://www.linkedin.com/in/abdul-qahir-jalali" target="_blank" rel="noopener">linkedin.com/in/abdul-qahir-jalali</a></div>
+          <div class="small"><strong>GitHub:</strong> <a class="link" href="https://github.com/Abdul-Qahir-Jalali" target="_blank" rel="noopener">github.com/Abdul-Qahir-Jalali</a></div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <a class="btn btn-primary" href="mailto:abdulqahir421@gmail.com">Email Me</a>
+          <a class="btn" href="https://github.com/Abdul-Qahir-Jalali" target="_blank" rel="noopener">View GitHub</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px">Skills</h3>
+        <div class="skill-list">
+          <!-- group them: AI / Tools / Programming -->
+          <div class="skill">Python</div>
+          <div class="skill">PyTorch</div>
+          <div class="skill">TensorFlow</div>
+          <div class="skill">NLP</div>
+          <div class="skill">LLMs / Generative AI</div>
+          <div class="skill">MLOps</div>
+          <div class="skill">Docker</div>
+          <div class="skill">MLflow</div>
+          <div class="skill">FastAPI</div>
+          <div class="skill">Scikit-learn</div>
+          <div class="skill">NumPy / Pandas</div>
+          <div class="skill">Hugging Face</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px">Work Experience</h3>
+        <div class="small muted"><strong>Intern — AI & ML</strong> · ITSOLERA Pvt. Ltd. (Islamabad) · 16 Jun 2025 – 22 Aug 2025</div>
+        <ul style="margin:10px 0 0 18px;color:var(--muted);line-height:1.5" class="small">
+          <li>AI-Enhanced detection of fake & bot profiles (social media)</li>
+          <li>Construction progress monitoring — ML models</li>
+          <li>Multi-modal risk scoring for disaster-prone agriculture</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px">Awards & Languages</h3>
+        <div class="small"><strong>Gold Medal</strong> — Academic Excellence, READ Foundation (Matric, 2018)</div>
+        <div style="margin-top:8px">
+          <div class="small"><strong>Languages:</strong> Urdu (native), Pahari, English (C1)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px">Hobbies & Interests</h3>
+        <div class="small muted">Problem solving, continuous learning, applied AI, football, cricket</div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px">References</h3>
+        <div class="small"><strong>Dr. Rabia Riaz</strong> — Associate Professor — rabia.riaz@ajku.edu.pk</div>
+        <div class="small" style="margin-top:6px"><strong>Dr. Syed Zaki Hassan</strong> — Assistant Professor — Zaki.mzd@gmail.com</div>
+      </div>
+
+    </aside>
   </div>
+
+  <script>
+    // Theme toggle: persists in localStorage
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('theme');
+      if(saved === 'light') root.classList.add('light');
+
+      btn.addEventListener('click', () => {
+        root.classList.toggle('light');
+        const isLight = root.classList.contains('light');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+
+      // small accessibility: focus outlines for keyboard users
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Tab') document.body.classList.add('show-focus');
+      });
+    })();
+  </script>
 </body>
 </html>
